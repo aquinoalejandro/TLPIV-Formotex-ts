@@ -3,6 +3,7 @@ import cors from 'cors';
 import morgan from 'morgan';
 import helmet from 'helmet';
 import { conexiondb } from './config/conexiondb';
+import authRoutes from './routes/auth.routes';
 
 
 class Server {
@@ -33,6 +34,7 @@ class Server {
     }
 
     routes(): void {
+        this.app.use(authRoutes);
 
     }
 
