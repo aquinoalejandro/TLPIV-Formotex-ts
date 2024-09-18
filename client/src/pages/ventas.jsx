@@ -37,7 +37,7 @@ export const Ventas = () => {
                         )}
                     </div>
                     <div class="div2">
-                        2
+                        No hay datos!
                     </div>
                 </div>
                 

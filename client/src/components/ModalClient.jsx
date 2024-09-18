@@ -70,6 +70,8 @@ export const ModalClient = (props) => {
       size="lg"
       aria-labelledby="contained-modal-title-vcenter"
       centered
+      data-bs-theme="dark"
+      style={{ color: "#ffffff"}}
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
