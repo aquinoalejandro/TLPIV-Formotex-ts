@@ -1,6 +1,6 @@
 import { User } from "../models/user";
 
-import bcryptjs from 'bcryptjs'
+import bcryptjs from 'bcryptjs';
 
 export class AuthService {
 

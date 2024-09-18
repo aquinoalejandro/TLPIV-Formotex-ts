@@ -9,3 +9,4 @@ export const conexiondb = async () => {
         console.error('No se conecto a la base de datos por el siguiente error: ', error);
     }
 }
+

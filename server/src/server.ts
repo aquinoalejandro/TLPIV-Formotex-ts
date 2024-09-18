@@ -4,6 +4,7 @@ import morgan from 'morgan';
 import helmet from 'helmet';
 import { conexiondb } from './config/conexiondb';
 import authRoutes from './routes/auth.routes';
+import equipmentRoutes from './routes/equipment.routes';
 
 
 class Server {
@@ -35,6 +36,7 @@ class Server {
 
     routes(): void {
         this.app.use(authRoutes);
+        this.app.use(equipmentRoutes);
 
     }
 

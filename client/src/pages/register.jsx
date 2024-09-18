@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import '../css/auth.css'
 
 export const Register = () => {
     const [username, setUsername] = useState("");
@@ -29,7 +30,7 @@ export const Register = () => {
     };
 
     return (
-        <div>
+        <div className="form">
         <h1>Register</h1>
         <form onSubmit={handleSubmit}>
             <label htmlFor="username">Username</label>
