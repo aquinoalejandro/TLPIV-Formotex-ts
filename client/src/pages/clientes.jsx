@@ -28,7 +28,8 @@ export const Clientes = () => {
     const filteredData = data.filter(client =>
         (client.socioNombre && client.socioNombre.toLowerCase().includes(searchTerm.toLowerCase())) ||
         client.socioDNI ||
-        (client.nombreEmpresa && client.nombreEmpresa.toLowerCase().includes(searchTerm.toLowerCase()))
+        (client.nombreEmpresa && client.nombreEmpresa.toLowerCase().includes(searchTerm.toLowerCase())) ||
+        (client.domicilio && client.domicilio.toLowerCase().includes(searchTerm.toLowerCase()))
     );
 
     useEffect(() => {
@@ -53,7 +54,7 @@ export const Clientes = () => {
             nombreEmpresa: client.nombreEmpresa || '',
             socioNombre: client.socioNombre || '',
             email: client.email || '',
-            localidad: client.localidad || '',
+            domicilio: client.domicilio || '',
         });
     };
     
@@ -67,7 +68,7 @@ export const Clientes = () => {
     };
 
     const handleSaveClick = async () => {
-        if (!editedData.nombreEmpresa || !editedData.socioNombre || !editedData.email || !editedData.localidad) {
+        if (!editedData.nombreEmpresa || !editedData.socioNombre || !editedData.email || !editedData.domicilio) {
             Swal.fire({
                 icon: 'warning',
                 title: 'Por favor completa todos los campos',
@@ -164,7 +165,7 @@ export const Clientes = () => {
                                     <th style={{ padding: '10px' }}>Nombre de empresa</th>
                                     <th style={{ padding: '10px' }}>Nombre de Socio</th>
                                     <th style={{ padding: '10px' }}>Email</th>
-                                    <th style={{ padding: '10px' }}>Localidad</th>
+                                    <th style={{ padding: '10px' }}>Domicilio</th>
                                     {role === 'admin' && <th style={{ padding: '10px' }}>Acciones</th>}
                                 </tr>
                             </thead>
@@ -203,8 +204,8 @@ export const Clientes = () => {
                                                 <td style={{ padding: '10px' }}>
                                                     <input
                                                         type="text"
-                                                        name="localidad"
-                                                        value={editedData.localidad || ''}
+                                                        name="Domicilio"
+                                                        value={editedData.domicilio || ''}
                                                         onChange={handleInputChange}
                                                         style={{ width: '100%' }}
                                                     />
@@ -231,12 +232,12 @@ export const Clientes = () => {
                                                 <td style={{ padding: '10px' }}>{client.nombreEmpresa}</td>
                                                 <td style={{ padding: '10px' }}>{client.socioNombre}</td>
                                                 <td style={{ padding: '10px' }}>{client.email}</td>
-                                                <td style={{ padding: '10px' }}>{client.localidad}</td>
+                                                <td style={{ padding: '10px' }}>{client.domicilio}</td>
                                                 {role === 'admin' && (
                                                     <td
                                                         style={{
                                                             display: 'flex',
-                                                            justifyContent: 'space-between',
+                                                            justifsyContent: 'space-between',
                                                             padding: '10px',
                                                             width: '120px',
                                                         }}

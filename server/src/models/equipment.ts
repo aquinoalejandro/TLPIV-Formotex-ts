@@ -32,9 +32,16 @@ export class Equipment extends Model {
     precio: number;
 
     @Column({
-        type: DataType.FLOAT,
+        type: DataType.STRING,
         allowNull: false,
         defaultValue: 0
     })
-    stock: number;
+    estado: string;
+
+    
+    @Column({
+        type: DataType.STRING,
+        allowNull: true
+    })
+    clienteDueño: string;
 }

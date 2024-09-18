@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { Placeholder } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Swal from 'sweetalert2'
@@ -7,9 +8,17 @@ export const ModalEquipment = (props) => {
 
   const [nombre, setNombre] = useState('');
   const [descripcion, setDescripcion] = useState('');
-  const [imagen, setImagen] = useState('');
+  const [estado, setEstado] = useState('');
   const [precio, setPrecio] = useState(0);
-  const [stock, setStock] = useState(0);
+  const [clients, setClients] = useState([]);
+  const [clienteDueño, setClienteDueño] = useState('');
+
+  useEffect(() => {
+    fetch('http://localhost:3000/client')
+      .then(response => response.json())
+      .then(data => setClients(data));
+  }, []);
+
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -19,7 +28,7 @@ export const ModalEquipment = (props) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ nombre, descripcion, imagen, precio, stock }),
+        body: JSON.stringify({ nombre, descripcion, estado, precio, clienteDueño: clienteDueño }),
       });
   
       if (response.ok) {
@@ -29,9 +38,10 @@ export const ModalEquipment = (props) => {
         // Update state variables
         setNombre('');
         setDescripcion('');
-        setImagen('');
+        setEstado('');
         setPrecio(0);
-        setStock(0);
+        
+        console.log('clienteDueño:', clienteDueño);
   
         Swal.fire({
           icon: 'success',
@@ -102,17 +112,6 @@ export const ModalEquipment = (props) => {
             className='form-control'
             onChange={(e) => setDescripcion(e.target.value)}
           />
-          <label htmlFor="stock">
-            Stock
-          </label>
-          <input
-            type="number"
-            id="stock"
-            name="stock"
-            value={stock}
-            className='form-control'
-            onChange={(e) => setStock(Number(e.target.value))}
-          />
           <label htmlFor="precio">
             Precio
           </label>
@@ -124,17 +123,26 @@ export const ModalEquipment = (props) => {
             className='form-control'
             onChange={(e) => setPrecio(Number(e.target.value))}
           />
-          <label htmlFor="imagen">
-            Imagen
+          <label htmlFor="estado">
+            Estado
           </label>
           <input
             type="text"
-            id="imagen"
-            name="imagen"
-            value={imagen}
+            id="estado"
+            name="estado"
+            value={estado}
             className='form-control'
-            onChange={(e) => setImagen(e.target.value)}
+            onChange={(e) => setEstado(e.target.value)}
           />
+          <label htmlFor="client">
+            Cliente
+          </label>
+          <select name="clienteDueño" id="clienteDueño" className='form-control' value={clienteDueño} onChange={(e) => setClienteDueño(e.target.value)}>
+            <option selected disabled hidden value="">Selecciona un cliente</option>
+            {clients && clients.map((client) => (
+              <option key={client.id} value={client.socioNombre}>{client.socioNombre} ({client.nombreEmpresa})</option>
+            ))}
+          </select>
           <button type="submit" className='btn btn-primary mt-3'>
             Agregar
           </button>

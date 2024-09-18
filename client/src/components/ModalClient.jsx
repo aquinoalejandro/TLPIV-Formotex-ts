@@ -9,7 +9,7 @@ export const ModalClient = (props) => {
   const [socioNombre, setSocioNombre] = useState('');
   const [socioDNI, setSocioDNI] = useState('');
   const [email, setEmail] = useState('');
-  const [localidad, setLocalidad] = useState('');
+  const [domicilio, setDomicilio] = useState('');
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -19,7 +19,7 @@ export const ModalClient = (props) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ nombreEmpresa,socioNombre, socioDNI, email, localidad }),
+        body: JSON.stringify({ nombreEmpresa,socioNombre, socioDNI, email, domicilio }),
       });
   
       if (response.ok) {
@@ -124,16 +124,16 @@ export const ModalClient = (props) => {
             className='form-control'
             onChange={(e) => setEmail(e.target.value)}
           />
-          <label htmlFor="Localidad">
-            Localidad
+          <label htmlFor="Domicilio">
+            Domicilio
           </label>
           <input
             type="text"
-            id="Localidad"
-            name="Localidad"
-            value={localidad}
+            id="Domicilio"
+            name="Domicilio"
+            value={domicilio}
             className='form-control'
-            onChange={(e) => setLocalidad(e.target.value)}
+            onChange={(e) => setDomicilio(e.target.value)}
           />
           <button type="submit" className='btn btn-primary mt-3'>
             Agregar

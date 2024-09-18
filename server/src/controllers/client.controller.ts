@@ -15,10 +15,10 @@ export class ClientController {
     }
 
     async createClient(req: Request, res: Response) {
-        const { nombre, nombreEmpresa, socioNombre, socioDni, email, localidad } = req.body;
+        const { nombre, nombreEmpresa, socioNombre, socioDni, email, domicilio } = req.body;
         
         try {
-            const Client = await new ClientService().createClient( nombre, nombreEmpresa, socioNombre, socioDni, email, localidad);
+            const Client = await new ClientService().createClient( nombre, nombreEmpresa, socioNombre, socioDni, email, domicilio);
             res.status(201).json(Client);
             } catch (error) {
                 
@@ -31,8 +31,8 @@ export class ClientController {
 
     async updateClient(req: Request, res: Response) {
         const { id } = req.params;
-        const { nombre, nombreEmpresa, socioNombre, socioDni, email, localidad } = req.body;
-        const client = await new ClientService().updateClient(id ,nombre, nombreEmpresa, socioNombre, socioDni, email, localidad );
+        const { nombre, nombreEmpresa, socioNombre, socioDni, email, domicilio } = req.body;
+        const client = await new ClientService().updateClient(id ,nombre, nombreEmpresa, socioNombre, socioDni, email, domicilio );
         res.status(200).json(`Se actualizo el cliente ${nombre}`);
     }
 

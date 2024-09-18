@@ -42,6 +42,6 @@ export class Client extends Model {
         allowNull: false,
         defaultValue: 0
     })
-    localidad: string;
+    domicilio: string;
 
 }

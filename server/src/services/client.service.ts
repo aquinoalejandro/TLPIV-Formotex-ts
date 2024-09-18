@@ -16,11 +16,11 @@ export class ClientService {
         }
 
     async createClient(
-        nombre:string, nombreEmpresa:string, socioNombre:string, socioDni:string, email:string, localidad:string): Promise<Client> {
-        return Client.create({ nombre, nombreEmpresa, socioNombre, socioDni, email, localidad});
+        nombre:string, nombreEmpresa:string, socioNombre:string, socioDni:string, email:string, domicilio:string): Promise<Client> {
+        return Client.create({ nombre, nombreEmpresa, socioNombre, socioDni, email, domicilio});
     }
 
-    async updateClient(id: string,nombre:string, nombreEmpresa:string, socioNombre:string, socioDni:string, email:string, localidad:string): Promise<Client | null> {
+    async updateClient(id: string,nombre:string, nombreEmpresa:string, socioNombre:string, socioDni:string, email:string, domicilio:string): Promise<Client | null> {
         const ClientToUpdate = await this.getClientById(id);
         if (!ClientToUpdate) {
             return null;
