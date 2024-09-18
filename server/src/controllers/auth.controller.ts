@@ -7,10 +7,8 @@ import { TokenService } from "../services/token.service";
 export class AuthController {
 
     async registerUser(req: Request, res: Response) {
-        const { username, email, password, role } = req.body;
-        if (!role) {
-            const role = 'user';
-        }
+        const { username, email, password } = req.body;
+        const role = 'user';
         const user = await new AuthService().createUser(username, email, password, role);
         
         const token = new TokenService().generateToken(user);

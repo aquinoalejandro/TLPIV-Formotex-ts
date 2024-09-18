@@ -5,6 +5,7 @@ import helmet from 'helmet';
 import { conexiondb } from './config/conexiondb';
 import authRoutes from './routes/auth.routes';
 import equipmentRoutes from './routes/equipment.routes';
+import clientRoutes from './routes/client.routes';
 
 
 class Server {
@@ -37,6 +38,7 @@ class Server {
     routes(): void {
         this.app.use(authRoutes);
         this.app.use(equipmentRoutes);
+        this.app.use(clientRoutes);
 
     }
 

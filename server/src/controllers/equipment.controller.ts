@@ -15,16 +15,29 @@ export class EquipmentController {
     }
 
     async createEquipment(req: Request, res: Response) {
-        const { nombre, imagen, descripcion,precio, stock } = req.body;
-        const equipment = new EquipmentService().createEquipment( nombre, imagen, descripcion, precio, stock);
-        res.status(201).json("Se creo el equipo");
+        const { nombre, descripcion,precio, stock } = req.body;
+        
+        try {
+            const equipment = await new EquipmentService().createEquipment( nombre, descripcion,precio, stock);
+            res.status(201).json(equipment);
+            } catch (error) {
+                
+                console.log(error);
+                res.status(500).json({ error: 'Error al crear el equipo' });
+            }
+
+
     }
 
     async updateEquipment(req: Request, res: Response) {
         const { id } = req.params;
-        const { nombre, imagen, descripcion, precio, stock } = req.body;
-        const equipment = await new EquipmentService().updateEquipment(id, nombre, imagen, descripcion, precio, stock );
-        res.status(200).json("Se actualizo el equipo");
+        const { nombre, descripcion, precio, stock } = req.body;
+        try {
+            const equipment = await new EquipmentService().updateEquipment(id, nombre, descripcion,precio, stock );
+            res.status(200).json(`Se actualizo el equipo ${nombre}`);
+            } catch (error) {
+                res.status(500).json({ error: 'Error al actualizar el equipo' });
+            }
     }
 
     async deleteEquipment(req: Request, res: Response) {

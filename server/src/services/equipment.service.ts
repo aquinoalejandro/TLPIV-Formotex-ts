@@ -17,17 +17,17 @@ export class EquipmentService {
         return equipment;
       }
 
-      async createEquipment(nombre:string, imagen:string, descripcion:string, precio:number, stock:number): Promise<Equipment> {
-        return Equipment.create({ nombre, imagen, descripcion,precio, stock });
+      async createEquipment(nombre:string, descripcion:string, precio:number, stock:number): Promise<Equipment> {
+        return Equipment.create({ nombre, descripcion,precio, stock });
       }
 
 
-      async updateEquipment(id: string, nombre:string, imagen:string, descripcion:string, precio:number, stock:number): Promise<Equipment | null> {
+      async updateEquipment(id: string, nombre:string, descripcion:string, precio:number, stock:number): Promise<Equipment | null> {
         const equipmentToUpdate = await this.getEquipmentById(id);
         if (!equipmentToUpdate) {
           return null;
         }
-        equipmentToUpdate.set({ nombre, imagen, descripcion,precio, stock });
+        equipmentToUpdate.set({ nombre, descripcion,precio, stock });
         return equipmentToUpdate.save();
       }
 

@@ -1,8 +1,8 @@
 import { Table, Column, Model, DataType, Default } from "sequelize-typescript";
 import { v4 as uuidv4 } from "uuid";
 
-@Table({ tableName: "equipment" })
-export class Equipment extends Model {
+@Table({ tableName: "client" })
+export class Client extends Model {
     @Default(uuidv4)
     @Column({
         type: DataType.UUID,
@@ -15,26 +15,33 @@ export class Equipment extends Model {
         type: DataType.STRING,
         allowNull: false
     })
-    nombre: string;
+    nombreEmpresa: string;
 
+    @Column({
+        type: DataType.STRING,
+        allowNull: false,
+        defaultValue: 0
+    })
+    socioNombre: string;
+
+    @Column({
+        type: DataType.STRING,
+        allowNull: false,
+        defaultValue: 0
+    })
+    socioDni: string;
 
     @Column({
         type: DataType.STRING,
         allowNull: true
     })
-    descripcion: string;
+    email: string;
 
     @Column({
-        type: DataType.FLOAT,
+        type: DataType.STRING,
         allowNull: false,
         defaultValue: 0
     })
-    precio: number;
+    localidad: string;
 
-    @Column({
-        type: DataType.FLOAT,
-        allowNull: false,
-        defaultValue: 0
-    })
-    stock: number;
 }
